@@ -157,7 +157,7 @@
 	SF-STRING		"File Name"			"Images"
 	SF-ADJUSTMENT	"Digits"			'(1 1 8 1 1 0 1)
 	SF-ADJUSTMENT	"First Number"		'(1 0 99999999 1 1 0 1)
-	SF-TOGGLE		"Numbering Botton to Top"  FALSE
+	SF-TOGGLE		"Numbering from Bottom to Top"  FALSE
 	SF-OPTION		"File Type"			'("xcf" "jpeg" "png" "bmp")
 	SF-ADJUSTMENT	"Jpeg Quality"		'(9 0 10 1 1 0 0)
 	SF-TOGGLE 		"PNG Transparent"	FALSE
