@@ -1,4 +1,4 @@
-**This page is written in Japanese. Please translate in your language.**
+**This page is written in Japanese. Please translate into your language.**
 
 # Script-fu-SaveSerialLayers
 ## これって何？
