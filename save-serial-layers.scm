@@ -58,9 +58,10 @@
                 (count 0)
 			)
 			(while (> (vector-length layers) count)
-				; rev が真の場合、下からレイヤー情報を引き出す
+				
                 (if (= TRUE rev)
-					(set! current-layer (vector-ref layers (- (vector-length layers) count)))
+					; rev が真の場合、下からレイヤー情報を引き出す
+					(set! current-layer (vector-ref layers (- (vector-length layers) count 1)))
 					(set! current-layer (vector-ref layers count))
 				)
                 (cond
@@ -69,10 +70,18 @@
 						()
 					)
 					; 取得したレイヤーがレイヤーグループだった場合、レイヤーグループに潜る
-					((and (not (= 0 (car (gimp-item-is-group current-layer)))) (eq? TURE into-folder))
+					((and (not (= 0 (car (gimp-item-is-group current-layer)))) (eq? TRUE into-folder))
 						(set! current-layer (car (gimp-item-get-children current-layer)))
-						(save-layers width height type current-layer number)
-						(set! number (+ number (vector-length current-layer)))
+						; フォルダ内のレイヤーがない場合、飛ばす
+						(if (null? current-layer)
+							()
+							(begin
+								; フォルダの子レイヤーを保存する
+								(save-layers width height type current-layer number)
+								; 連番をレイヤーの数だけ増やす
+								(set! number (+ number (vector-length current-layer)))
+							)
+						)
 					)
 					; 取得したレイヤーが普通のレイヤーの場合、ファイルに書き出す
                     (
